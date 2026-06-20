@@ -23,6 +23,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -34,10 +39,10 @@ jobs:
         working-directory: space-nft
         run: npm ci
 
-      - name: Build (static export, base path = /<repo>/space-nft)
+      - name: Build (static export under the Pages sub-path)
         working-directory: space-nft
         env:
-          PAGES_BASE_PATH: /${{ github.event.repository.name }}/space-nft
+          PAGES_BASE_PATH: /website-side-projects/space-nft
         run: npm run build
 
       - name: Assemble Pages site
