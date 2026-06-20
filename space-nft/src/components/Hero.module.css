@@ -1,0 +1,160 @@
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding-block: clamp(7rem, 14vh, 11rem) 4rem;
+  overflow: hidden;
+}
+
+.grid {
+  position: relative;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  align-items: center;
+  gap: 2rem;
+}
+
+.copy {
+  position: relative;
+  z-index: 2;
+  max-width: 640px;
+}
+
+.eyebrow {
+  margin-bottom: 1.6rem;
+  opacity: 0;
+}
+
+.title {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 500;
+  font-size: var(--step-5);
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  margin-bottom: 1.6rem;
+}
+.line {
+  display: block;
+  overflow: hidden;
+}
+.line > span {
+  display: inline-block;
+  will-change: transform;
+}
+.title .accent {
+  font-family: var(--font-serif), serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  padding-right: 0.08em;
+}
+
+.sub {
+  max-width: 38ch;
+  font-size: var(--step-1);
+  color: var(--ink-soft);
+  margin-bottom: 2.4rem;
+  opacity: 0;
+}
+
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  opacity: 0;
+}
+
+.stage {
+  position: relative;
+  z-index: 1;
+  height: min(64vh, 580px);
+  width: 100%;
+}
+.stageInner {
+  width: 100%;
+  height: 100%;
+}
+
+.scrollCue {
+  position: absolute;
+  bottom: 1.8rem;
+  left: var(--gutter);
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-family: var(--font-mono), monospace;
+  font-size: var(--step--1);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  opacity: 0;
+}
+.scrollCue i {
+  display: block;
+  width: 1px;
+  height: 42px;
+  background: linear-gradient(var(--ink-mute), transparent);
+  position: relative;
+  overflow: hidden;
+}
+.scrollCue i::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--cyan);
+  animation: cueRun 2s var(--ease) infinite;
+}
+@keyframes cueRun {
+  0% {
+    transform: translateY(-100%);
+  }
+  60%,
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+.floatTag {
+  position: absolute;
+  right: var(--gutter);
+  bottom: 2.4rem;
+  z-index: 2;
+  text-align: right;
+  font-family: var(--font-mono), monospace;
+  font-size: var(--step--1);
+  letter-spacing: 0.12em;
+  color: var(--ink-mute);
+  opacity: 0;
+}
+.floatTag b {
+  color: var(--ink);
+  font-weight: 400;
+}
+
+@media (max-width: 860px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .stage {
+    position: absolute;
+    inset: 0;
+    height: auto;
+    z-index: 0;
+    opacity: 0.5;
+  }
+  .copy {
+    text-align: left;
+  }
+  .sub {
+    text-shadow: 0 2px 24px rgba(4, 4, 9, 0.9);
+  }
+  .floatTag {
+    display: none;
+  }
+}

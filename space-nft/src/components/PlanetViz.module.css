@@ -1,0 +1,75 @@
+.viz {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  isolation: isolate;
+}
+
+.ring {
+  position: absolute;
+  width: 132%;
+  height: 132%;
+  border-radius: 50%;
+  border: 2px solid var(--p-atmo);
+  opacity: 0.55;
+  transform: rotate(-22deg) scaleY(0.34);
+  box-shadow: 0 0 24px -6px var(--p-atmo);
+}
+.ring::after {
+  content: "";
+  position: absolute;
+  inset: 8% 0;
+  border-radius: 50%;
+  border: 1px solid var(--p-atmo);
+  opacity: 0.4;
+}
+
+.planet {
+  position: relative;
+  width: 74%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  background: radial-gradient(
+      circle at calc(var(--lx) * 1%) calc(var(--ly) * 1%),
+      var(--p-high),
+      var(--p-low) 62%,
+      color-mix(in srgb, var(--p-low) 70%, #000) 100%
+    );
+  box-shadow:
+    inset -14px -12px 36px rgba(0, 0, 0, 0.65),
+    inset 8px 8px 26px color-mix(in srgb, var(--p-high) 40%, transparent),
+    0 0 50px -8px var(--p-atmo);
+}
+
+.surface {
+  position: absolute;
+  inset: -40%;
+  background:
+    radial-gradient(circle at 30% 30%, color-mix(in srgb, var(--p-high) 80%, transparent), transparent 45%),
+    radial-gradient(circle at 72% 64%, color-mix(in srgb, var(--p-low) 90%, transparent), transparent 50%),
+    conic-gradient(from 0deg, transparent, color-mix(in srgb, var(--p-high) 30%, transparent), transparent 40%);
+  filter: blur(6px);
+  mix-blend-mode: screen;
+  opacity: 0.7;
+  animation: spin 26s linear infinite;
+}
+
+.shadow {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at calc(var(--lx) * 1%) calc(var(--ly) * 1%),
+    transparent 30%,
+    rgba(0, 0, 0, 0.55) 78%
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .surface {
+    animation: none;
+  }
+}

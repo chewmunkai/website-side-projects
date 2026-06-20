@@ -1,0 +1,56 @@
+.marquee {
+  --gap: clamp(1.5rem, 4vw, 3.5rem);
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  user-select: none;
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 12%,
+    #000 88%,
+    transparent
+  );
+  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+
+.track {
+  display: flex;
+  align-items: center;
+  gap: var(--gap);
+  padding-right: var(--gap);
+  flex-shrink: 0;
+  min-width: 100%;
+  animation: marquee var(--duration, 28s) linear infinite;
+  will-change: transform;
+}
+.reverse .track {
+  animation-direction: reverse;
+}
+.marquee:hover .track {
+  animation-play-state: paused;
+}
+
+.item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gap);
+  font-family: var(--font-display), sans-serif;
+  font-weight: 500;
+  font-size: clamp(1.6rem, 5vw, 3.8rem);
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  color: var(--ink);
+}
+.dot {
+  width: 0.5em;
+  height: 0.5em;
+  border-radius: 50%;
+  background: var(--grad);
+  flex-shrink: 0;
+}
+.outline {
+  color: transparent;
+  -webkit-text-stroke: 1px var(--line-strong);
+}

@@ -1,0 +1,105 @@
+.root {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: all;
+}
+
+.panels {
+  position: absolute;
+  inset: 0;
+  display: flex;
+}
+.panel {
+  flex: 1;
+  background: var(--bg-2);
+  will-change: transform;
+}
+.panel:nth-child(odd) {
+  background: #07060d;
+}
+
+.content {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(1.5rem, 5vw, 3.5rem);
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: var(--font-mono), monospace;
+  font-size: var(--step--1);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+
+.center {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+.word {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 600;
+  font-size: clamp(2.2rem, 8vw, 6rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  display: flex;
+  overflow: hidden;
+}
+.word span {
+  display: inline-block;
+  will-change: transform;
+}
+.tag {
+  margin-top: 1.2rem;
+  font-family: var(--font-serif), serif;
+  font-style: italic;
+  font-size: var(--step-1);
+  color: var(--ink-soft);
+  opacity: 0;
+}
+
+.bottom {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+}
+.count {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 500;
+  font-size: clamp(3rem, 12vw, 9rem);
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+}
+.count em {
+  font-style: normal;
+  font-size: 0.35em;
+  color: var(--ink-mute);
+  vertical-align: super;
+}
+.bar {
+  position: relative;
+  flex: 1;
+  max-width: 320px;
+  height: 1px;
+  background: var(--line);
+  margin-bottom: 1.2rem;
+}
+.barFill {
+  position: absolute;
+  inset: 0;
+  transform-origin: left;
+  transform: scaleX(0);
+  background: var(--grad);
+}

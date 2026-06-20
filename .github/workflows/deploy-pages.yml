@@ -1,0 +1,65 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Allow the workflow to publish a Pages deployment.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# One in-flight deploy at a time; don't cancel a running publish.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: space-nft/package-lock.json
+
+      - name: Install dependencies
+        working-directory: space-nft
+        run: npm ci
+
+      - name: Build (static export, base path = /<repo>/space-nft)
+        working-directory: space-nft
+        env:
+          PAGES_BASE_PATH: /${{ github.event.repository.name }}/space-nft
+        run: npm run build
+
+      - name: Assemble Pages site
+        run: |
+          rm -rf _site
+          mkdir -p _site
+          cp pages-hub/index.html _site/index.html
+          cp -r space-nft/out _site/space-nft
+          touch _site/.nojekyll
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

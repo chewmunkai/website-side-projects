@@ -1,0 +1,10 @@
+# OS / editor
+.DS_Store
+*.log
+.idea/
+.vscode/
+
+# Monorepo build output
+/_site/
+
+# Dependencies / build artifacts are ignored per-project (see space-nft/.gitignore)

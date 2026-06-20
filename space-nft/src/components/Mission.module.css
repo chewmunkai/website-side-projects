@@ -1,0 +1,52 @@
+.mission {
+  position: relative;
+  padding-block: clamp(5rem, 12vh, 9rem);
+}
+
+.head {
+  display: flex;
+  justify-content: center;
+  margin-bottom: clamp(2.5rem, 6vh, 4.5rem);
+}
+
+.statement {
+  max-width: 16ch;
+  margin-inline: auto;
+  text-align: center;
+  font-family: var(--font-display), sans-serif;
+  font-weight: 400;
+  font-size: clamp(2rem, 1.1rem + 4.6vw, 4.6rem);
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
+.word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+}
+.word > span {
+  display: inline-block;
+  will-change: transform;
+}
+.accent {
+  font-family: var(--font-serif), serif;
+  font-style: italic;
+  font-weight: 400;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.marquees {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.4rem, 2vh, 1rem);
+}
+.top {
+  margin-bottom: clamp(2.5rem, 6vh, 4.5rem);
+}
+.bottom {
+  margin-top: clamp(2.5rem, 6vh, 4.5rem);
+}

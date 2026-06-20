@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Website Side Projects</title>
+    <meta
+      name="description"
+      content="A small constellation of experimental web builds."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600&family=Space+Mono&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #050409;
+        --ink: #ecebf5;
+        --ink-soft: #b7b6cc;
+        --ink-mute: #76758f;
+        --line: rgba(255, 255, 255, 0.1);
+        --grad: linear-gradient(115deg, #8b5cf6, #5ce1ff 55%, #38e8c6);
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        min-height: 100vh;
+        background:
+          radial-gradient(60% 50% at 80% -10%, rgba(139, 92, 246, 0.18), transparent 70%),
+          radial-gradient(50% 40% at 0% 110%, rgba(92, 225, 255, 0.14), transparent 70%),
+          var(--bg);
+        color: var(--ink);
+        font-family: "Space Grotesk", system-ui, sans-serif;
+        display: flex;
+        flex-direction: column;
+        padding: clamp(1.5rem, 5vw, 4rem);
+        gap: clamp(2.5rem, 8vh, 5rem);
+        -webkit-font-smoothing: antialiased;
+      }
+      .top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: "Space Mono", monospace;
+        font-size: 0.75rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--ink-mute);
+      }
+      .mark { display: inline-flex; align-items: center; gap: 0.6rem; color: var(--ink); }
+      .dot {
+        width: 18px; height: 18px; border-radius: 50%;
+        background: var(--grad); box-shadow: 0 0 18px -4px #5ce1ff;
+      }
+      header h1 {
+        font-weight: 500;
+        font-size: clamp(2.6rem, 9vw, 6.5rem);
+        line-height: 0.98;
+        letter-spacing: -0.04em;
+        max-width: 14ch;
+      }
+      header h1 em {
+        font-family: "Instrument Serif", serif;
+        font-style: italic;
+        font-weight: 400;
+        background: var(--grad);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      header p {
+        margin-top: 1.4rem;
+        max-width: 48ch;
+        color: var(--ink-soft);
+        font-size: clamp(1rem, 2.5vw, 1.2rem);
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1.2rem;
+      }
+      .card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 1.4rem;
+        padding: 1.6rem;
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        background: rgba(255, 255, 255, 0.025);
+        text-decoration: none;
+        color: inherit;
+        overflow: hidden;
+        transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+          border-color 0.5s ease;
+      }
+      .card:hover { transform: translateY(-6px); border-color: rgba(255, 255, 255, 0.22); }
+      .thumb {
+        position: relative;
+        aspect-ratio: 16 / 10;
+        border-radius: 14px;
+        overflow: hidden;
+        display: grid;
+        place-items: center;
+        background: radial-gradient(80% 80% at 50% 30%, #14121f, #08070f);
+      }
+      .planet {
+        width: 52%;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background: radial-gradient(circle at 32% 28%, #5ce1ff, #2a1a66 62%, #0a0820);
+        box-shadow: inset -10px -8px 28px rgba(0, 0, 0, 0.6), 0 0 50px -6px #8b5cf6;
+        animation: float 6s ease-in-out infinite;
+      }
+      @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+      .ring {
+        position: absolute;
+        width: 42%; height: 42%;
+        border-radius: 50%;
+        border: 2px solid #5ce1ff;
+        opacity: 0.5;
+        transform: rotate(-20deg) scaleY(0.34);
+      }
+      .meta { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; }
+      .meta h2 { font-weight: 500; font-size: 1.4rem; letter-spacing: -0.02em; }
+      .meta p { color: var(--ink-soft); font-size: 0.92rem; margin-top: 0.3rem; }
+      .launch {
+        font-family: "Space Mono", monospace;
+        font-size: 0.72rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--ink);
+        white-space: nowrap;
+      }
+      .tag {
+        position: absolute; top: 1rem; right: 1.2rem;
+        font-family: "Space Mono", monospace;
+        font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase;
+        color: var(--ink-mute);
+      }
+      footer {
+        margin-top: auto;
+        padding-top: 2rem;
+        border-top: 1px solid var(--line);
+        font-family: "Space Mono", monospace;
+        font-size: 0.72rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--ink-mute);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="top">
+      <span class="mark"><span class="dot"></span> Side Projects</span>
+      <span>Index · 01</span>
+    </div>
+
+    <header>
+      <h1>A constellation of <em>web builds</em>.</h1>
+      <p>
+        Small, experimental front-end projects — each one its own world. Pick a
+        planet and dive in.
+      </p>
+    </header>
+
+    <main class="grid">
+      <a class="card" href="./space-nft/">
+        <span class="tag">WebGL · GSAP</span>
+        <div class="thumb">
+          <span class="ring"></span>
+          <span class="planet"></span>
+        </div>
+        <div class="meta">
+          <div>
+            <h2>SPACEPLANET</h2>
+            <p>An awwwards-style NFT planetarium with a live procedural cosmos.</p>
+          </div>
+          <span class="launch">Launch&nbsp;↗</span>
+        </div>
+      </a>
+    </main>
+
+    <footer>© 2026 — built with Claude Code</footer>
+  </body>
+</html>

@@ -1,0 +1,60 @@
+.root {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 70;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.root.ready {
+  opacity: 1;
+}
+
+.ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  mix-blend-mode: difference;
+  display: grid;
+  place-items: center;
+  will-change: transform;
+}
+
+.dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  background: #fff;
+  border-radius: 50%;
+  mix-blend-mode: difference;
+  will-change: transform;
+}
+
+.label {
+  font-family: var(--font-mono), monospace;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #08060f;
+  opacity: 0;
+  transform: scale(0.6);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  white-space: nowrap;
+}
+.hasLabel .label {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* hide native cursor only when the custom one is active */
+:global(body.cursor-custom),
+:global(body.cursor-custom *) {
+  cursor: none !important;
+}
