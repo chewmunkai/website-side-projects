@@ -15,22 +15,29 @@ function makeRng(seed: number) {
   };
 }
 
-/** Procedural "lit windows" texture for the generic buildings. */
+/** Hi-res procedural "lit windows" texture so the facades read crisp, not pixelated. */
 function makeWindowTexture() {
   const c = document.createElement("canvas");
-  c.width = 64;
-  c.height = 128;
+  c.width = 256;
+  c.height = 512;
   const ctx = c.getContext("2d")!;
-  ctx.fillStyle = "#05060c";
+  const g = ctx.createLinearGradient(0, 0, 0, c.height);
+  g.addColorStop(0, "#0c0f1c");
+  g.addColorStop(1, "#05060c");
+  ctx.fillStyle = g;
   ctx.fillRect(0, 0, c.width, c.height);
   const rng = makeRng(99);
-  for (let y = 4; y < c.height - 4; y += 8) {
-    for (let x = 4; x < c.width - 4; x += 8) {
-      if (rng() > 0.45) {
-        const warm = rng() > 0.4;
-        ctx.fillStyle = warm ? "#ffcf8a" : "#9fe8ff";
-        ctx.globalAlpha = 0.5 + rng() * 0.5;
-        ctx.fillRect(x, y, 4, 5);
+  const cell = 18;
+  const ww = 10;
+  const hh = 12;
+  for (let y = 10; y < c.height - cell; y += cell) {
+    const floorLit = rng() > 0.22;
+    for (let x = 12; x < c.width - cell; x += cell) {
+      if (floorLit && rng() > 0.34) {
+        const warm = rng() > 0.42;
+        ctx.fillStyle = warm ? "#ffcd86" : "#9fe8ff";
+        ctx.globalAlpha = 0.55 + rng() * 0.45;
+        ctx.fillRect(x, y, ww, hh);
       }
     }
   }
@@ -38,6 +45,9 @@ function makeWindowTexture() {
   const tex = new THREE.CanvasTexture(c);
   tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
   tex.colorSpace = THREE.SRGBColorSpace;
+  tex.anisotropy = 16;
+  tex.generateMipmaps = true;
+  tex.minFilter = THREE.LinearMipmapLinearFilter;
   return tex;
 }
 

@@ -31,26 +31,31 @@ export const earthFragment = /* glsl */ `
     vec3 V = normalize(vViewW);
 
     float sun = dot(N, L);
-    float day = smoothstep(-0.12, 0.3, sun);
+    float day = smoothstep(-0.22, 0.38, sun); // softer, wider terminator
 
     vec3 dayCol = texture2D(uDay, vUv).rgb;
     vec3 nightCol = texture2D(uNight, vUv).rgb;
 
+    // gently lift + saturate the day side so land reads vivid
+    vec3 dayLit = dayCol * 1.22;
+    float lum = dot(dayLit, vec3(0.299, 0.587, 0.114));
+    dayLit = mix(vec3(lum), dayLit, 1.18);
+
     // warm the city lights a touch
-    nightCol *= vec3(1.25, 1.05, 0.7);
+    nightCol *= vec3(1.3, 1.05, 0.65);
 
-    vec3 col = mix(nightCol * 1.3, dayCol, day);
-    col += dayCol * 0.05; // faint ambient
+    vec3 col = mix(nightCol * 1.25, dayLit, day);
+    col += dayCol * 0.06; // faint ambient
 
-    // ocean specular glint (spec map: oceans bright)
+    // ocean specular glint (spec map: oceans bright) — softened
     float ocean = texture2D(uSpec, vUv).r;
     vec3 H = normalize(L + V);
-    float spec = pow(max(dot(N, H), 0.0), 24.0) * ocean * day;
-    col += vec3(0.85, 0.92, 1.0) * spec * 0.9;
+    float spec = pow(max(dot(N, H), 0.0), 30.0) * ocean * day;
+    col += vec3(0.8, 0.9, 1.0) * spec * 0.55;
 
     // atmospheric limb glow on the day side
     float fres = pow(1.0 - max(dot(N, V), 0.0), 2.6);
-    col += vec3(0.32, 0.56, 1.0) * fres * (day * 0.6 + 0.1);
+    col += vec3(0.32, 0.56, 1.0) * fres * (day * 0.6 + 0.08);
 
     gl_FragColor = vec4(col, uOpacity);
   }

@@ -25,17 +25,17 @@ export default function Earth() {
   const clouds = useRef<THREE.Mesh>(null);
 
   const [day, night, spec, cloudTex] = useTexture([
-    asset("/textures/earth_atmos_2048.jpg"),
+    asset("/textures/earth_day_2k.jpg"),
     asset("/textures/earth_lights_2048.png"),
     asset("/textures/earth_specular_2048.jpg"),
-    asset("/textures/earth_clouds_1024.png"),
+    asset("/textures/earth_clouds_2k.jpg"),
   ]);
 
   day.colorSpace = THREE.SRGBColorSpace;
   night.colorSpace = THREE.SRGBColorSpace;
-  cloudTex.colorSpace = THREE.SRGBColorSpace;
+  // spec + clouds are data/masks, keep them linear
   [day, night, spec, cloudTex].forEach((t) => {
-    t.anisotropy = 8;
+    t.anisotropy = 16;
   });
 
   const earthMat = useMemo(

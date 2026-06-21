@@ -83,7 +83,15 @@ export default function Footer() {
         <div className={styles.legal}>
           <span>
             © {SITE.year} {SITE.name}. An independent concept experience — not
-            affiliated with the official MM2H programme.
+            affiliated with the official MM2H programme. Earth textures:{" "}
+            <a
+              href="https://www.solarsystemscope.com/textures/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Solar System Scope
+            </a>{" "}
+            (CC BY 4.0).
           </span>
           <span className={styles.legalLinks}>
             <span className="muted">{FOOTER_TAGLINE}</span>

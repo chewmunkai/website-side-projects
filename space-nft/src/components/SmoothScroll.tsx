@@ -16,6 +16,11 @@ export default function SmoothScroll({
   children: React.ReactNode;
 }) {
   useEffect(() => {
+    // pinned ScrollTrigger sections need a clean start; browser scroll
+    // restoration to a mid-journey offset corrupts the pin math.
+    if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+    window.scrollTo(0, 0);
+
     const reduced = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
