@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { ROADMAP } from "@/lib/data";
 import SplitText from "./SplitText";
+import ScrubText from "./ScrubText";
 import styles from "./Roadmap.module.css";
 
 export default function Roadmap() {
@@ -76,9 +77,9 @@ export default function Roadmap() {
       <div className="container">
         <div className={styles.head}>
           <span className="eyebrow">Four Steps</span>
-          <h2 className={styles.title}>
-            Your <em>journey</em> home
-          </h2>
+          <ScrubText as="h2" className={styles.title}>
+            Your journey home
+          </ScrubText>
           <SplitText as="p" className={styles.lede} mode="words">
             From a quiet daydream to the warm air at arrivals — here is how a
             second home in Malaysia takes shape.

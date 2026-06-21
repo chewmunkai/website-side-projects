@@ -1,6 +1,7 @@
 import type { CSSProperties } from "react";
 import { WHY } from "@/lib/data";
 import Reveal from "./Reveal";
+import ScrubText from "./ScrubText";
 import styles from "./Why.module.css";
 
 export default function Why() {
@@ -9,9 +10,9 @@ export default function Why() {
       <div className="container">
         <div className={styles.head}>
           <span className="eyebrow">{WHY.eyebrow}</span>
-          <h2 className={styles.title}>
-            A place that lets you <em>stay awhile</em>
-          </h2>
+          <ScrubText as="h2" className={styles.title}>
+            A place that lets you stay awhile
+          </ScrubText>
           <p className={styles.intro}>{WHY.intro}</p>
         </div>
 

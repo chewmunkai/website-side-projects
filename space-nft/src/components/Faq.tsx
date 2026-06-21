@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { FAQS } from "@/lib/data";
+import ScrubText from "./ScrubText";
 import styles from "./Faq.module.css";
 
 export default function Faq() {
@@ -13,9 +14,9 @@ export default function Faq() {
         <div className={styles.layout}>
           <div className={styles.aside}>
             <span className="eyebrow">Questions</span>
-            <h2 className={styles.title}>
-              Before you <em>arrive</em>
-            </h2>
+            <ScrubText as="h2" className={styles.title}>
+              Before you arrive
+            </ScrubText>
             <p className={styles.asideText}>
               Honest answers about a long stay in Malaysia — what it feels like,
               and where to find the official details.
