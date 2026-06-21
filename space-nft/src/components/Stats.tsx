@@ -59,7 +59,7 @@ export default function Stats() {
             className={styles.cell}
             data-val={s.value}
             data-suffix={s.suffix}
-            data-decimals={"decimals" in s ? s.decimals : 0}
+            data-decimals={0}
           >
             <div className={styles.value}>
               <span data-num>0</span>

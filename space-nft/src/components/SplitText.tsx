@@ -1,7 +1,7 @@
 "use client";
 
 import { createElement, useEffect, useRef, type ElementType } from "react";
-import { gsap, ScrollTrigger } from "@/lib/gsap";
+import { gsap } from "@/lib/gsap";
 
 type SplitMode = "words" | "chars";
 
@@ -107,6 +107,3 @@ export default function SplitText({
     content
   );
 }
-
-/** Re-export so callers can refresh triggers after layout shifts. */
-export { ScrollTrigger };

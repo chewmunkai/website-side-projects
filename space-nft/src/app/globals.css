@@ -11,7 +11,7 @@
   --bg-3: #0c0a18;
   --ink: #ecebf5;
   --ink-soft: #b7b6cc;
-  --ink-mute: #76758f;
+  --ink-mute: #9290a8;
   --line: rgba(255, 255, 255, 0.09);
   --line-strong: rgba(255, 255, 255, 0.16);
 
@@ -113,6 +113,16 @@ button {
 ::selection {
   background: var(--violet);
   color: #fff;
+}
+
+/* visible keyboard focus (the custom cursor is pointer-only) */
+:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+:focus:not(:focus-visible) {
+  outline: none;
 }
 
 /* ---- atmosphere: grain + vignette ----------------------------------- */

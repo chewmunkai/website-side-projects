@@ -1,29 +1,24 @@
-import BackgroundScene from "@/components/scene/BackgroundScene";
 import Nav from "@/components/Nav";
-import Hero from "@/components/Hero";
-import Mission from "@/components/Mission";
-import Collection from "@/components/Collection";
+import Journey from "@/components/Journey";
+import Why from "@/components/Why";
 import Stats from "@/components/Stats";
 import Roadmap from "@/components/Roadmap";
-import Team from "@/components/Team";
 import Faq from "@/components/Faq";
-import CtaCosmos from "@/components/CtaCosmos";
+import Cta from "@/components/Cta";
 import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
     <>
-      <BackgroundScene />
+      <span id="top" aria-hidden="true" />
       <Nav />
       <main>
-        <Hero />
-        <Mission />
-        <Collection />
+        <Journey />
+        <Why />
         <Stats />
         <Roadmap />
-        <Team />
         <Faq />
-        <CtaCosmos />
+        <Cta />
       </main>
       <Footer />
     </>

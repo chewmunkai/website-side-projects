@@ -29,23 +29,24 @@ const mono = Space_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "SPACEPLANET — Delving into the NFT Planetarium",
+  title: "Malaysia · My Second Home — From the Stars to the Skyline",
   description:
-    "Embark on a galactic journey of distinctive digital worlds. A limited collection of 1,555 procedurally-born planets, where generative art meets the blockchain.",
+    "A cinematic scroll that falls from space, into Earth, down to Malaysia and home to Kuala Lumpur. An immersive WebGL concept experience about making Malaysia your second home.",
   keywords: [
-    "NFT",
-    "planet",
-    "generative art",
-    "space",
+    "Malaysia",
+    "MM2H",
+    "My Second Home",
+    "Kuala Lumpur",
+    "long stay",
     "WebGL",
     "three.js",
-    "collectible",
+    "relocation",
   ],
-  authors: [{ name: "SPACEPLANET" }],
+  authors: [{ name: "MM2H Concept" }],
   openGraph: {
-    title: "SPACEPLANET — Delving into the NFT Planetarium",
+    title: "Malaysia · My Second Home",
     description:
-      "A limited collection of 1,555 procedurally-born digital worlds.",
+      "Fall from the edge of space to the foot of the Petronas Towers — a cinematic journey home to Malaysia.",
     type: "website",
   },
 };

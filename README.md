@@ -7,7 +7,7 @@ own folder and is published to a sub-path of one GitHub Pages site.
 
 | Project | Path | Stack | Live |
 | --- | --- | --- | --- |
-| **SPACEPLANET** — an awwwards-style NFT planetarium | [`/space-nft`](./space-nft) | Next.js · React Three Fiber · GSAP · Lenis | [↗](https://chewmunkai.github.io/website-side-projects/space-nft/) |
+| **Malaysia · My Second Home** — a cinematic scroll from space → Earth → KL | [`/space-nft`](./space-nft) | Next.js · React Three Fiber · GSAP · Lenis | [↗](https://chewmunkai.github.io/website-side-projects/space-nft/) |
 
 ## Structure
 

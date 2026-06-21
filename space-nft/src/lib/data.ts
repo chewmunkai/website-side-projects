@@ -1,207 +1,147 @@
 /**
  * Single source of truth for all site content.
- * Derived from the original space-nft.webflow.io copy, enriched with the
- * parameters the WebGL layer needs to render each NFT as a *live* procedural
- * planet (seed + palette) instead of a static image.
+ * Theme: "Malaysia — My Second Home" (MM2H). A cinematic scroll falls from
+ * space, into Earth, down to a stylized Malaysia, and lands in Kuala Lumpur.
+ *
+ * NOTE: This is an experiential/aspirational concept site. It deliberately does
+ * NOT state official MM2H requirements, fees or eligibility — those are set by
+ * the Malaysian government and must be checked via official sources.
  */
 
 export const SITE = {
-  name: "SPACEPLANET",
-  tagline: "Delving into the NFT planetarium",
-  subline: "Embark on a galactic journey of distinctive digital worlds.",
-  mission: "Uniting art and technology to redefine digital creativity.",
-  openSeaUrl: "https://opensea.io/",
+  name: "MM2H",
+  wordmark: "SECOND HOME",
+  tagline: "Malaysia · My Second Home",
+  city: "Kuala Lumpur",
+  officialUrl: "https://mm2h.gov.my/",
   year: 2026,
-  credit: { name: "Nata Stelmakh", url: "https://www.behance.net/" },
 } as const;
 
 export const NAV_LINKS = [
-  { label: "Collection", href: "#collection" },
-  { label: "Roadmap", href: "#roadmap" },
-  { label: "Team", href: "#team" },
+  { label: "The Descent", href: "#journey" },
+  { label: "Why Malaysia", href: "#why" },
+  { label: "Your Journey", href: "#journey-steps" },
   { label: "FAQ", href: "#faq" },
 ] as const;
 
-export type Rarity = "Common" | "Rare" | "Epic" | "Legendary" | "Mythic";
+export const HERO = {
+  eyebrow: "Malaysia · My Second Home",
+  titleLine1: "Somewhere out there,",
+  titleLine2: "home is waiting in *Malaysia*",
+  sub: "Begin in the quiet of space and fall gently toward a country that feels like an exhale — warm air, open doors, and a long, unhurried life in the heart of Kuala Lumpur.",
+  primaryCta: "Begin Your Descent",
+  secondaryCta: "Why Malaysia",
+} as const;
 
-export interface PlanetNFT {
-  id: number;
-  name: string;
-  rarity: Rarity;
-  price: number; // ETH
-  /** deterministic seed driving the surface noise pattern */
-  seed: number;
-  /** [low, high] surface colors */
-  palette: [string, string];
-  /** atmosphere / rim glow color */
-  atmosphere: string;
-  blurb: string;
-  hasRings?: boolean;
+export type JourneyStage = "space" | "earth" | "malaysia" | "kl";
+
+export interface JourneyBeat {
+  stage: JourneyStage;
+  kicker: string;
+  line: string;
 }
 
-export const COLLECTION: PlanetNFT[] = [
+export const JOURNEY_BEATS: JourneyBeat[] = [
   {
-    id: 1,
-    name: "Nebula Nova",
-    rarity: "Legendary",
-    price: 0.025,
-    seed: 11.7,
-    palette: ["#3a1d6e", "#ff5da2"],
-    atmosphere: "#c084fc",
-    blurb: "A nascent world wrapped in the violet breath of a dying nebula.",
-    hasRings: true,
+    stage: "space",
+    kicker: "60,000 km out",
+    line: "From here, every border disappears. Only the blue remains.",
   },
   {
-    id: 2,
-    name: "Ether Sphere",
-    rarity: "Rare",
-    price: 0.025,
-    seed: 27.3,
-    palette: ["#0b3a5e", "#5ce1ff"],
-    atmosphere: "#5ce1ff",
-    blurb: "Oceans of liquid light suspended in perfect, weightless calm.",
+    stage: "earth",
+    kicker: "Falling home",
+    line: "One small planet turns below — and one corner of it is calling.",
   },
   {
-    id: 3,
-    name: "Lumina Vortex",
-    rarity: "Epic",
-    price: 0.025,
-    seed: 41.9,
-    palette: ["#3d1466", "#ffd27d"],
-    atmosphere: "#ffd27d",
-    blurb: "A spiralling storm of molten gold that never stops turning.",
-    hasRings: true,
+    stage: "malaysia",
+    kicker: "Tropical latitude",
+    line: "Two coastlines, green islands, a country wrapped in equatorial sun.",
   },
   {
-    id: 4,
-    name: "Celesti Wave",
-    rarity: "Common",
-    price: 0.025,
-    seed: 8.2,
-    palette: ["#072a4a", "#38e8c6"],
-    atmosphere: "#38e8c6",
-    blurb: "Tidal aurorae ripple across an endless mineral sea.",
-  },
-  {
-    id: 5,
-    name: "Quasar Quill",
-    rarity: "Mythic",
-    price: 0.025,
-    seed: 63.4,
-    palette: ["#4a0e3e", "#ff7a59"],
-    atmosphere: "#ff5da2",
-    blurb: "Forged at the edge of a quasar, its core still remembers the blast.",
-    hasRings: true,
-  },
-  {
-    id: 6,
-    name: "Astral Pulse",
-    rarity: "Rare",
-    price: 0.025,
-    seed: 19.6,
-    palette: ["#10204f", "#8b5cf6"],
-    atmosphere: "#8b5cf6",
-    blurb: "A heartbeat of light pulses beneath a glassy violet crust.",
-  },
-  {
-    id: 7,
-    name: "Galacti Gem",
-    rarity: "Epic",
-    price: 0.025,
-    seed: 52.1,
-    palette: ["#063b46", "#9bffd6"],
-    atmosphere: "#5ce1ff",
-    blurb: "Carved from a single crystal, refracting a thousand suns.",
-  },
-  {
-    id: 8,
-    name: "Zenith Orbit",
-    rarity: "Common",
-    price: 0.025,
-    seed: 33.8,
-    palette: ["#241159", "#b794ff"],
-    atmosphere: "#a78bfa",
-    blurb: "Locked in flawless rotation at the apex of its system.",
-  },
-  {
-    id: 9,
-    name: "Cosmo Flare",
-    rarity: "Legendary",
-    price: 0.025,
-    seed: 47.2,
-    palette: ["#5a1020", "#ffb347"],
-    atmosphere: "#ff7a59",
-    blurb: "Solar flares braid the surface in ribbons of restless fire.",
-    hasRings: true,
-  },
-  {
-    id: 10,
-    name: "Nova Sculpt",
-    rarity: "Mythic",
-    price: 0.025,
-    seed: 71.5,
-    palette: ["#1b1448", "#5ce1ff"],
-    atmosphere: "#c084fc",
-    blurb: "Hand-shaped from supernova dust into an impossible geometry.",
+    stage: "kl",
+    kicker: "Touchdown · Kuala Lumpur",
+    line: "The towers rise to meet you. Welcome to your second home.",
   },
 ];
 
+export const WHY = {
+  eyebrow: "Why Malaysia",
+  title: "A place that lets you stay awhile",
+  intro:
+    "Some countries you visit. Malaysia is one you settle into — slowly, comfortably, like a city that already knows your name.",
+  items: [
+    {
+      title: "Summer that never leaves",
+      body: "A warm, green, tropical climate the whole year through. No harsh winters to outrun — just long days, sudden rain that clears the air, and evenings made for the outdoors.",
+      colors: ["#ffb347", "#ff5da2"] as [string, string],
+    },
+    {
+      title: "A country fluent in welcome",
+      body: "Bahasa Malaysia, English, Mandarin and Tamil share the same streets. English is widely spoken, so daily life feels open and easy from your very first week.",
+      colors: ["#5ce1ff", "#8b5cf6"] as [string, string],
+    },
+    {
+      title: "One of the world's great food cities",
+      body: "Nasi lemak at dawn, char kway teow at midnight, mamak stalls that never sleep. Malay, Chinese and Indian kitchens turn every ordinary meal into a celebration.",
+      colors: ["#ff7a59", "#ffd27d"] as [string, string],
+    },
+    {
+      title: "Nature an hour from the skyline",
+      body: "Step out of Kuala Lumpur and into ancient rainforest, tea-green highlands, or islands ringed by coral. Few capitals keep the wild so close at hand.",
+      colors: ["#38e8c6", "#5ce1ff"] as [string, string],
+    },
+    {
+      title: "A crossroads of Asia",
+      body: "Centrally placed and well-connected, Malaysia puts much of the region within an easy flight — a comfortable base for a life lived across more than one country.",
+      colors: ["#a78bfa", "#5ce1ff"] as [string, string],
+    },
+    {
+      title: "City comfort, gentle pace",
+      body: "Modern apartments, world-class hospitals, fast connectivity and walkable neighbourhoods — wrapped in a rhythm of life that lets you breathe.",
+      colors: ["#ff5da2", "#a78bfa"] as [string, string],
+    },
+  ],
+} as const;
+
 export const STATS = [
-  { value: 1555, suffix: "", label: "Total Supply" },
-  { value: 50, suffix: "+", label: "Total Traits" },
-  { value: 8, suffix: "", label: "Trait Categories" },
-  { value: 0.025, suffix: " ETH", label: "Mint Price", decimals: 3 },
+  { value: 365, suffix: "", label: "warm tropical days a year, near the equator" },
+  { value: 4, suffix: "+", label: "languages woven through everyday streets" },
+  { value: 130, suffix: "M", label: "years of rainforest — older than the Amazon" },
+  { value: 24, suffix: "/7", label: "hawker stalls and mamak tables, always open" },
 ] as const;
 
 export interface Phase {
   index: string;
-  title: string;
   kicker: string;
+  title: string;
   body: string;
 }
 
 export const ROADMAP: Phase[] = [
   {
     index: "01",
-    kicker: "Creation",
-    title: "Artistic Genesis",
-    body: "Conceptualization and creation of unique, captivating digital worlds — the foundational art that gives the collection its soul.",
+    kicker: "Dream",
+    title: "Discover",
+    body: "Wander the idea before you commit to it. Picture your mornings in Kuala Lumpur, your weekends in the highlands, the life you'd build. The second home begins as a feeling.",
   },
   {
     index: "02",
-    kicker: "Expansion",
-    title: "Technological Innovation",
-    body: "Cutting-edge tech, a fully realised website experience, and seamless blockchain integration for trustless minting.",
+    kicker: "Prepare",
+    title: "Plan",
+    body: "Map out the practical shape of a long stay — your neighbourhood, your budget, the rhythm of your days. Gather your questions and get a clear, honest picture first.",
   },
   {
     index: "03",
-    kicker: "Growth",
-    title: "Collaborations & Beyond",
-    body: "Exploring partnerships and new horizons — marking the continuous growth and evolution of the planetarium.",
+    kicker: "Apply",
+    title: "Apply",
+    body: "Take the formal step toward long-stay status. Because this is an official government programme, follow the current requirements through the proper channels and trusted guidance.",
   },
   {
     index: "04",
-    kicker: "Community",
-    title: "Thrilling Events",
-    body: "Engaging community events, interactive exhibitions, and special promotions to keep the constellation vibrant and alive.",
+    kicker: "Arrive",
+    title: "Arrive",
+    body: "Step off the plane into the warm air and begin. Find your café, learn your route, meet your neighbours. The descent is over — you're home now.",
   },
-];
-
-export interface Member {
-  name: string;
-  role: string;
-  /** gradient seed colors for the procedural avatar */
-  colors: [string, string];
-}
-
-export const TEAM: Member[] = [
-  { name: "Stephan", role: "CEO / Owner", colors: ["#8b5cf6", "#5ce1ff"] },
-  { name: "Miranda", role: "Head of Design", colors: ["#ff5da2", "#ffd27d"] },
-  { name: "Roy", role: "The Creator", colors: ["#5ce1ff", "#38e8c6"] },
-  { name: "Mark", role: "Designer & Co-Creator", colors: ["#a78bfa", "#ff7a59"] },
-  { name: "Jully", role: "Collab Manager", colors: ["#ffd27d", "#ff5da2"] },
-  { name: "Jonatan", role: "Community Lead", colors: ["#38e8c6", "#8b5cf6"] },
-  { name: "Jastin", role: "Head Moderator", colors: ["#5ce1ff", "#c084fc"] },
 ];
 
 export interface Faq {
@@ -211,33 +151,43 @@ export interface Faq {
 
 export const FAQS: Faq[] = [
   {
-    q: "What is the concept behind the collection?",
-    a: "Each piece is an exploration of celestial form — where generative art converges with cutting-edge technology. The fusion produces a one-of-a-kind, immersive digital world that pushes past the boundaries of traditional art.",
+    q: "What exactly is Malaysia My Second Home?",
+    a: "It's a long-stay pathway that lets eligible foreigners make Malaysia a home base for an extended period, rather than visiting on short trips. Think of it less as a holiday and more as putting down soft roots — a place to return to, settle into, and call your second home.",
   },
   {
-    q: "Is there a limited supply of NFTs?",
-    a: "Absolutely. Every world is part of a limited edition of 1,555, carefully crafted to ensure exclusivity and rarity for our collectors — adding lasting value to each piece in the ecosystem.",
+    q: "What are the official requirements, fees and eligibility rules?",
+    a: "These are set by the Malaysian government and can change over time, so we won't quote figures here — accuracy matters more than a tidy number on a website. For the current, authoritative requirements, please refer to the official MM2H programme and Malaysian government sources, or speak with a licensed agent.",
   },
   {
-    q: "How is my NFT ownership secured?",
-    a: "Ownership details for each planet are stored immutably on-chain, providing a transparent and tamper-proof record that guarantees the authenticity and security of your digital assets.",
+    q: "Where should I actually live — is it only Kuala Lumpur?",
+    a: "Kuala Lumpur is the natural heart of it: international, walkable, and endlessly alive. But long-stayers also love Penang's seaside heritage, the cool calm of the highlands, and the laid-back coasts. KL is where many people begin, then explore outward.",
   },
   {
-    q: "Are there future plans and collaborations?",
-    a: "Yes — we have exciting collaborations and partnerships planned to further diversify the collection. Follow the roadmap for the latest on the evolving narrative of our universe.",
+    q: "Will I be able to get by in English?",
+    a: "Comfortably. English is widely spoken across cities, healthcare, business and daily services, alongside Bahasa Malaysia, Mandarin and Tamil. Most newcomers find the language barrier far gentler than they expected.",
   },
   {
-    q: "How do I stay updated on new releases?",
-    a: "Follow us on social media, subscribe to the newsletter, and check back here. These channels deliver real-time updates on releases, events, and community happenings.",
+    q: "What is daily life really like?",
+    a: "Warm, unhurried and richly textured. Mornings over kopi, world-class food on every corner, modern conveniences in the city, and rainforest or islands within easy reach for the weekend. It balances comfort with a real sense of adventure.",
   },
   {
-    q: "How do I purchase from the collection?",
-    a: "Visit the marketplace, connect your wallet securely, and browse the curated selection. Once you've found your world, complete the transaction to make it yours.",
+    q: "How do I take the first real step?",
+    a: "Start by exploring and planning — picture the life, ask your questions, get oriented. When you're ready to move from dreaming to doing, confirm the official process through Malaysian government sources and qualified, licensed guidance before committing.",
   },
 ];
 
+export const CTA = {
+  eyebrow: "The descent is over",
+  title: "Your second home is *waiting*",
+  sub: "You've travelled from the edge of space to the foot of the Petronas Towers. There's only one thing left to do — start the life that's waiting at the bottom of the scroll.",
+  button: "Begin Your Journey",
+} as const;
+
+export const FOOTER_TAGLINE =
+  "From the stars to the skyline — Malaysia, the home you arrive at twice.";
+
 export const SOCIALS = [
-  { label: "Discord", href: "https://discord.com/" },
-  { label: "Telegram", href: "https://telegram.org/" },
-  { label: "Twitter", href: "https://x.com/" },
+  { label: "Official MM2H", href: "https://mm2h.gov.my/" },
+  { label: "Tourism Malaysia", href: "https://www.malaysia.travel/" },
+  { label: "Visit KL", href: "https://www.visitkl.gov.my/" },
 ] as const;

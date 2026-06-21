@@ -14,11 +14,11 @@ export default function Faq() {
           <div className={styles.aside}>
             <span className="eyebrow">Questions</span>
             <h2 className={styles.title}>
-              Before you <em>orbit</em>
+              Before you <em>arrive</em>
             </h2>
             <p className={styles.asideText}>
-              Everything you need to know about the collection, ownership and
-              how to claim your world.
+              Honest answers about a long stay in Malaysia — what it feels like,
+              and where to find the official details.
             </p>
           </div>
 
@@ -39,7 +39,11 @@ export default function Faq() {
                     {f.q}
                     <span className={styles.icon} aria-hidden="true" />
                   </button>
-                  <div className={styles.body} id={`faq-body-${i}`} role="region">
+                  <div
+                    className={styles.body}
+                    id={`faq-body-${i}`}
+                    inert={!isOpen}
+                  >
                     <div className={styles.bodyInner}>
                       <p className={styles.a}>{f.a}</p>
                     </div>

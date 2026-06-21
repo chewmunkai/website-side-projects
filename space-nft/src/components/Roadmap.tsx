@@ -72,24 +72,20 @@ export default function Roadmap() {
   }, []);
 
   return (
-    <section ref={root} id="roadmap" className={`${styles.roadmap} section`}>
+    <section ref={root} id="journey-steps" className={`${styles.roadmap} section`}>
       <div className="container">
         <div className={styles.head}>
-          <span className="eyebrow">The Voyage</span>
+          <span className="eyebrow">Four Steps</span>
           <h2 className={styles.title}>
-            A <em>living</em> roadmap
+            Your <em>journey</em> home
           </h2>
           <SplitText as="p" className={styles.lede} mode="words">
-            A dynamic timeline charts the heartbeats of the project — from
-            inception to milestones. Join the digital voyage.
+            From a quiet daydream to the warm air at arrivals — here is how a
+            second home in Malaysia takes shape.
           </SplitText>
         </div>
 
         <div ref={timeline} className={styles.timeline}>
-          <div className={styles.rail}>
-            <span ref={fill} className={styles.railFill} />
-          </div>
-
           {ROADMAP.map((p) => (
             <div key={p.index} className={styles.phase}>
               <span className={styles.node} />
@@ -103,6 +99,11 @@ export default function Roadmap() {
               </div>
             </div>
           ))}
+
+          {/* rail rendered last so .phase:nth-child parity starts at phase 1 */}
+          <div className={styles.rail}>
+            <span ref={fill} className={styles.railFill} />
+          </div>
         </div>
       </div>
     </section>

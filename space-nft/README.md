@@ -1,35 +1,48 @@
-# SPACEPLANET — NFT Planetarium
+# Malaysia · My Second Home — a cinematic scroll
 
-A ground-up redesign of [space-nft.webflow.io](https://space-nft.webflow.io/)
-into an awwwards-style interactive experience: a live procedural cosmos rendered
-in WebGL, choreographed with scroll-driven motion.
+> The folder is named `space-nft` for monorepo/URL stability — the project
+> inside is a **Malaysia / "My Second Home" (MM2H)** concept experience.
 
-> Original concept & art direction: Nata Stelmakh. This is an independent
-> engineering/design reinterpretation.
+An awwwards-style, scroll-driven journey that falls **from outer space, into a
+real-textured Earth, down to a stylized 3D Malaysia, and home to the Kuala
+Lumpur skyline** — all rendered live in three.js and scrubbed to the scrollbar
+with GSAP.
 
-## Highlights
+> Independent concept experience — **not** affiliated with the official MM2H
+> programme. It deliberately states no official requirements/fees; the copy
+> points users to official sources.
 
-- **Live procedural planets** — the hero, the collection lightbox and the final
-  CTA render real-time shader planets (FBM noise surface, day/night terminator,
-  fresnel atmosphere, rings) via React Three Fiber. Each collection card is a
-  pure-CSS procedural planet so we keep WebGL contexts to the few that earn it.
-- **One cosmic backdrop** — a fixed, instanced, twinkling starfield + drifting
-  nebula behind the whole page.
-- **Scroll choreography** — Lenis smooth scroll feeds a single GSAP /
-  ScrollTrigger rAF loop: a pinned horizontal collection gallery, a roadmap
-  spine that draws itself, count-up stats, and masked text reveals everywhere.
-- **Micro-interactions** — animated preloader, difference-blend custom cursor
-  with contextual labels, magnetic buttons, a text-flip nav, a full-screen
-  mobile menu, an accordion FAQ and a clickable planet lightbox.
-- **Accessible & resilient** — full `prefers-reduced-motion` support (motion and
-  WebGL animation degrade to a calm static state), semantic markup, keyboard
-  support, and a clean static export that runs anywhere.
+## The journey (one pinned WebGL canvas)
+
+Scroll progress (0 → 1) drives a single camera rig + crossfades between three
+worlds, all in one canvas:
+
+1. **Space** — a twinkling starfield + nebula; the hero copy.
+2. **Earth** — real NASA Blue Marble textures with a custom day/night shader
+   (city lights on the dark side), drifting clouds and a fresnel atmosphere;
+   the globe turns to bring **South-East Asia / Malaysia** to face you as you
+   fall toward it.
+3. **Malaysia** — a stylized 3D map: Peninsular + Borneo as glowing extruded
+   landmasses over a lat/long grid, with a luminous beam over Kuala Lumpur.
+4. **Kuala Lumpur** — a low-poly night skyline with procedural lit windows, the
+   **Petronas Towers** + skybridge and **KL Tower**.
+
+Crossfades are masked by light "altitude" flashes. Captions fade in per stage.
+
+## Everything else
+
+Re-themed MM2H sections (Why Malaysia, evocative stats with count-up, a 4-step
+"your journey" timeline, FAQ, CTA, footer with a live KL clock) over the shared
+infrastructure: Lenis smooth-scroll → one GSAP/ScrollTrigger loop, animated
+preloader, difference-blend custom cursor, magnetic buttons, text-flip nav,
+full-screen mobile menu. Full `prefers-reduced-motion` support (the journey
+degrades to a calm static Earth + hero).
 
 ## Stack
 
-Next.js 16 (App Router, static export) · React 19 · TypeScript ·
-React Three Fiber + drei + three.js · GSAP (ScrollTrigger) · Lenis ·
-hand-authored CSS Modules (no UI framework).
+Next.js 16 (App Router, static export) · React 19 · TypeScript · three.js +
+React Three Fiber + drei · GSAP (ScrollTrigger) · Lenis · hand-authored CSS
+Modules.
 
 ## Develop
 
@@ -39,17 +52,20 @@ npm run dev      # http://localhost:3000
 npm run build    # static export to ./out
 ```
 
-The build is a fully static export (`output: 'export'`). Set `PAGES_BASE_PATH`
-to serve it under a sub-path (used by the Pages deploy).
+Earth textures (public-domain NASA Blue Marble, via the three.js examples set)
+live in `public/textures/` and load through a base-path-aware `asset()` helper
+so they resolve under the GitHub Pages sub-path.
 
-## Project map
+## Map
 
 ```
 src/
 ├─ app/                 layout (fonts, metadata, providers), page, globals.css
 ├─ components/
-│  ├─ scene/            WebGL: Planet, Starfield, Nebula, BackgroundScene, PlanetCanvas
-│  ├─ Hero, Mission, Collection, Stats, Roadmap, Team, Faq, CtaCosmos, Footer
+│  ├─ journey/          the WebGL journey: Earth, Malaysia, KLCity, CameraRig,
+│  │                    JourneyScene, earthShaders, journeyState
+│  ├─ Journey.tsx       pinned section: scrubs progress, captions, flashes
+│  ├─ Why, Stats, Roadmap, Faq, Cta, Footer
 │  └─ Nav, Cursor, Preloader, SmoothScroll, MagneticButton, SplitText, …
-└─ lib/                 data (all content), gsap + lenis setup, hooks
+└─ lib/                 data (all copy), gsap + lenis + scroll-lock, anim math
 ```

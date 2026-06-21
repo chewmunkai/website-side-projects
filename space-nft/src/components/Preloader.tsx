@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 import styles from "./Preloader.module.css";
 
-const WORD = "SPACEPLANET";
+const WORD = "MALAYSIA";
 
 /** Fires once the curtain has lifted so the hero can begin its intro. */
 export const PRELOADER_DONE = "spaceplanet:loaded";
@@ -85,8 +85,8 @@ export default function Preloader() {
 
       <div className={styles.content}>
         <div className={styles.top}>
-          <span>Planetarium</span>
-          <span>EST. 2026</span>
+          <span>My Second Home</span>
+          <span>KUALA LUMPUR</span>
         </div>
 
         <div className={styles.center}>
@@ -96,7 +96,7 @@ export default function Preloader() {
                 <span key={i}>{c}</span>
               ))}
             </div>
-            <div className={styles.tag}>Delving into the unknown</div>
+            <div className={styles.tag}>Preparing your descent</div>
           </div>
         </div>
 
